@@ -1,0 +1,96 @@
+{
+  "name": "highrise",
+  "productName": "Highrise",
+  "version": "0.1.0",
+  "description": "A tower-building simulation game",
+  "desktopName": "highrise.desktop",
+  "main": "main.cjs",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "sync": "node scripts/sync-web.cjs",
+    "start": "npm run sync && electron .",
+    "dist:mac": "npm run sync && electron-builder --mac --arm64",
+    "dist:mac-intel": "npm run sync && electron-builder --mac --x64",
+    "dist:mac-universal": "npm run sync && electron-builder --mac --universal",
+    "dist:win": "npm run sync && electron-builder --win --x64",
+    "dist:linux": "npm run sync && electron-builder --linux --x64",
+    "dist:all": "npm run sync && electron-builder --mac --arm64 --win --x64 --linux --x64"
+  },
+  "build": {
+    "appId": "com.highrise.game",
+    "productName": "Highrise",
+    "copyright": "Copyright © 2026",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "steam.json",
+      "game/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/steamworks.js/**"
+    ],
+    "mac": {
+      "category": "public.app-category.simulation-games",
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "identity": null,
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "title": "Highrise",
+      "contents": [
+        {
+          "x": 140,
+          "y": 190
+        },
+        {
+          "x": 400,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "build/icon.png",
+      "artifactName": "Highrise-${version}-win-x64.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png",
+      "category": "Game",
+      "executableName": "highrise",
+      "synopsis": "A tower-building simulation game",
+      "syncDesktopName": true,
+      "artifactName": "Highrise-${version}-linux-x86_64.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Highrise",
+      "artifactName": "Highrise-Setup-${version}.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "steamworks.js": "^0.4.0"
+  }
+}

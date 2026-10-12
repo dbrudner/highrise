@@ -1,0 +1,14 @@
+"AppBuild"
+{
+	"AppID"	"YOUR_APP_ID"
+	"Desc"	"Highrise build"
+	"BuildOutput"	"output/"
+	"ContentRoot"	"../dist/"
+	"SetLive"	""
+	"Depots"
+	{
+		"YOUR_MAC_DEPOT_ID"	"depot_mac.vdf"
+		"YOUR_WIN_DEPOT_ID"	"depot_win.vdf"
+		"YOUR_LINUX_DEPOT_ID"	"depot_linux.vdf"
+	}
+}

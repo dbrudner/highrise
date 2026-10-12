@@ -1,0 +1,51 @@
+<!doctype html><html><body style="margin:0;background:transparent">
+<canvas id="c" width="1024" height="1024"></canvas>
+<script>{
+// Highrise app icon (macOS Big Sur-style squircle with 100px margins).
+const c = document.getElementById('c'), x = c.getContext('2d');
+const S = 824, O = 100, R = 185;
+x.save();
+x.beginPath(); x.roundRect(O, O, S, S, R); x.clip();
+const sky = x.createLinearGradient(0, O, 0, O + S);
+sky.addColorStop(0, '#0d1638'); sky.addColorStop(0.55, '#33407a'); sky.addColorStop(0.85, '#f08a5d'); sky.addColorStop(1, '#f6b26b');
+x.fillStyle = sky; x.fillRect(O, O, S, S);
+// stars
+x.fillStyle = 'rgba(255,255,255,.85)';
+for (let i = 0; i < 40; i++) { const sx = O + ((i * 197) % S), sy = O + ((i * 89) % 330); x.fillRect(sx, sy, 3, 3); }
+// back skyline
+x.fillStyle = '#25305e';
+[[130,560,90,360],[230,620,70,300],[700,600,80,320],[790,540,100,380]].forEach(([a,b,w,h]) => x.fillRect(a, b, w, h));
+// main tower
+const tx = 352, tw = 320, top = 250, base = 924;
+const body = x.createLinearGradient(tx, 0, tx + tw, 0);
+body.addColorStop(0, '#3b6fd1'); body.addColorStop(0.5, '#5ec2ff'); body.addColorStop(1, '#2f5ab8');
+x.fillStyle = body;
+x.fillRect(tx, top + 90, tw, base - top - 90);
+x.fillRect(tx + 50, top, tw - 100, 100);
+// antenna + light
+x.fillStyle = '#c9d6ea'; x.fillRect(tx + tw / 2 - 5, top - 110, 10, 112);
+x.fillStyle = '#ff4d4d'; x.beginPath(); x.arc(tx + tw / 2, top - 116, 13, 0, 7); x.fill();
+x.fillStyle = 'rgba(255,77,77,.25)'; x.beginPath(); x.arc(tx + tw / 2, top - 116, 34, 0, 7); x.fill();
+// windows
+for (let r = 0; r < 13; r++) for (let k = 0; k < 6; k++) {
+  const wx = tx + 24 + k * 47, wy = top + 120 + r * 44;
+  if (wy > base - 70) continue;
+  const lit = ((r * 7 + k * 3) % 5) < 3;
+  x.fillStyle = lit ? '#ffe08a' : 'rgba(10,20,50,.45)';
+  x.fillRect(wx, wy, 30, 26);
+}
+for (let k = 0; k < 4; k++) { x.fillStyle = (k % 2) ? '#ffe08a' : 'rgba(10,20,50,.45)'; x.fillRect(tx + 70 + k * 47, top + 30, 30, 26); }
+// elevator shaft stripe with car
+x.fillStyle = 'rgba(8,14,40,.55)'; x.fillRect(tx + tw / 2 - 18, top + 110, 36, base - top - 170);
+x.fillStyle = '#ffd166'; x.fillRect(tx + tw / 2 - 14, top + 400, 28, 34);
+// lobby
+x.fillStyle = '#efe7d4'; x.fillRect(tx - 10, base - 66, tw + 20, 66);
+x.fillStyle = '#9fd6ef'; x.fillRect(tx + tw / 2 - 40, base - 56, 80, 56);
+x.fillStyle = '#55636f'; x.fillRect(tx + tw / 2 - 2, base - 56, 4, 56);
+// ground
+x.fillStyle = '#1b1f2e'; x.fillRect(O, base, S, O + S - base);
+x.restore();
+// subtle inner highlight
+x.strokeStyle = 'rgba(255,255,255,.18)'; x.lineWidth = 4;
+x.beginPath(); x.roundRect(O + 2, O + 2, S - 4, S - 4, R); x.stroke();
+}</script></body></html>

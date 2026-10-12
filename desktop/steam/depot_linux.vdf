@@ -1,0 +1,10 @@
+"DepotBuild"
+{
+	"DepotID"	"YOUR_LINUX_DEPOT_ID"
+	"FileMapping"
+	{
+		"LocalPath"	"linux-unpacked/*"
+		"DepotPath"	"."
+		"Recursive"	"1"
+	}
+}

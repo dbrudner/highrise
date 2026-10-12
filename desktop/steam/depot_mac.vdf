@@ -1,0 +1,10 @@
+"DepotBuild"
+{
+	"DepotID"	"YOUR_MAC_DEPOT_ID"
+	"FileMapping"
+	{
+		"LocalPath"	"mac-arm64/*"
+		"DepotPath"	"."
+		"Recursive"	"1"
+	}
+}
