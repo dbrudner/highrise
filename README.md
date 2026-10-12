@@ -9,7 +9,7 @@ Runs on **macOS, Windows and Linux / Steam Deck**, with full mouse, keyboard and
 
 ## Download
 
-Get the latest build from the **[Releases page](https://github.com/dbrudner/highrise/releases/latest)**:
+Get the latest build from the **[Releases page](https://github.com/dbrudner/highrise/releases)**:
 
 | Platform | File |
 | --- | --- |
